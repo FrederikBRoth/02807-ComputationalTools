@@ -1,297 +1,289 @@
 # %% [md]
-# # Week 2 - Exercises
-# Exercise 1
+## This is the assignments for 1.
+# 1.1.1 - Hello world
+# %%
+for _ in range(10):
+    print('Hdllo, world!')
+# %% [md]
+# 1.1.6 - useargument modif
+# %%
+import sys
+
+name1 = input()
+name2 = input()
+name3 = input()
+print(name1, name2, name3)
+# %% [md]
+# 1.2.2 - cos sin aprox 0.0
+# %%
+import math
+
+number = int(input())
+result = math.pow(math.cos(number), 2) + math.pow(math.sin(number), 2)
+print(result)
+# %% [md]
+# Skipping 1.2.5 and 1.2.8 because of simple type relationship tests.
+# Types change based on what is added to what.
 #
-# [map, filter, reduce documentation](https://www.learnpython.org/en/Map%2C_Filter%2C_Reduce)
-#
-# This is the map function in python. Map applies a function on all elements in the list and results in a new changed list
+# 1.2.11 - Simple Modulus
 # %%
-# shitty way
-credit_cards = [913, 113, 513, 173, 645, 654]
 
-newlist = []
+input1 = int(input())
+input2 = int(input())
 
-for card in credit_cards:
-    card_ = card + 1000
-    newlist.append(card_)
-
-print(newlist)
-
-# Cool way
-
-new_cool = list(map(lambda x: x + 2000, credit_cards))
-print(new_cool)
-
-# You can pass as many arguments as the functions can take
-
-new_new_cool = list(map(lambda x, y: x + y + 1000, credit_cards, range(1, 10)))
-print(new_new_cool)
+if input1 % input2 == 0 or input2 % input1 == 0:
+    print(True)
 # %% [md]
-# Filter function
-# Filter function tldr:
-# 1. Unlike map(), only one iterable is required.
-# 2. The func argument is required to return a boolean type. If it doesn't, filter simply returns the iterable passed to it. Also, as only one iterable is required, it's implicit that func must only take one argument.
-# 3. filter passes each element in the iterable through func and returns only the ones that evaluate to true. I mean, it's right there in the name -- a "filter".
+# 1.3.6
 # %%
-
-# Example
-
-dank_meme = [85, 69, 420, 20, 22]
-
-
-def is_meme(id):
-    return id == 85 or id == 420 or id == 69
-
-
-real_memes = list(filter(is_meme, dank_meme))
-print(real_memes)
-
-# You can do lambdas aswell
-
-dromes = ['bob', 'nothing', 'anutforajaroftuna', 'rewire']
-
-test = 'yooo'
-reversed = test[::-1]
-print(reversed)
-
-# FYI you can do lists like [<start>:<stop>:<step>]
-palindromes = list(filter(lambda word: word == word[::-1], dromes))
-print(palindromes)
-
-# %% [md]
-# Reduce function
-# Can take a list and iteratively add the elements together (or somethign else, depending on the function)
-# %%
-from functools import reduce
-
-abc = ['a', 'b', 'c', 'd']
-together = reduce(lambda a, b: a + b, abc)
-print(together)
-
-# %% [md]
-# Exercise in map, filter and reduce
-# %%
-from functools import reduce
-import numpy as np
-
-# Use map to print the square of each numbers rounded
-# to three decimal places
-my_floats = [4.35, 6.09, 3.25, 9.77, 2.16, 8.88, 4.59]
-
-# Use filter to print only the names that are less than
-# or equal to seven letters
-my_names = ['olumide', 'akinremi', 'josiah', 'temidayo', 'omoseun']
-
-# Use reduce to print the product of these numbers
-my_numbers = [4, 6, 9, 23, 5]
-
-# Fix all three respectively.
-map_result = list(map(lambda x: round(np.square(x), 3), my_floats))
-filter_result = list(filter(lambda name: len(name) <= 7, my_names))
-reduce_result = reduce(lambda num1, num2: num1 * num2, my_numbers)
-
-print(map_result)
-print(filter_result)
-print(reduce_result)
-# %% [md]
-# # Exercise 2 - Word Frequency
-# %%
-# My solution
-import re
-from functools import reduce
-
-document = re.findall(r'\b\w+\b', open('./Data/enchantedForest.txt').read())
-
-uniques = list(set(document))
-
-freq_of_word = dict.fromkeys(uniques)
-
-for key in freq_of_word:
-    freq_of_word[key] = len(list(filter(lambda word: word == key, document)))
-
-# Intended approach
-document = {
-    'Document1': re.findall(
-        r'\b\w+\b', open('./Data/enchantedForest.txt').read()
-    )
-}
-
-
-def combine_pairs(acc, pair):
-    key, value = pair
-    if not acc:
-        return [(key, int(value))]
-
-    # find the index of the key if it exists in the accumulator
-    for i, (acc_key, acc_value) in enumerate(acc):
-        if acc_key == key:
-            acc[i] = (key, acc_value + int(value))
-            break
+amount = int(input())
+i = 0
+while i <= amount:
+    if i % 10 == 1 and i != 11:
+        print(str(i) + 'st Hello')
+    elif i % 10 == 2 and i != 12:
+        print(str(i) + 'nd Hello')
+    elif i % 10 == 3 and i != 13:
+        print(str(i) + 'rd Hello')
     else:
-        acc.append((key, int(value)))
-
-    return acc
-
-
-mapped = list(map(lambda x: (x, 1), document['Document1']))
-reduced = reduce(combine_pairs, mapped, [])
-
-print(reduced)
+        print(str(i) + 'th Hello')
+    i = i + 1
+# %% [md]
+# 1.3.7
+# %%
+for i in range(1000, 2000):
+    print(str(i), end='')
+    if (i + 1) % 5 == 0:
+        print('\n')
 
 # %% [md]
-# # Exercise 3 - Inverted Index
+# 1.3.13
 # %%
 
-import re
-from functools import reduce
+import math
 
-documents = {
-    1: re.findall(r'\b\w+\b', open('./Data/Story1.txt').read()),
-    2: re.findall(r'\b\w+\b', open('./Data/Story2.txt').read()),
-}
+input1 = int(input())
 
-mapped = []
-for i in documents.items():
-    print(i[0])
-    mapped.extend(list(map(lambda x: (x, i[0]), i[1])))
-print(mapped)
+if input1 > 0:
+    i = 0
+    powNumber = 0
 
-
-def merge_lists_tuple(acc, pair):
-    word, doc_id = pair
-    for i, (existing_word, doc_ids) in enumerate(acc):
-        if word == existing_word and doc_id not in doc_ids:
-            acc[i] = (word, doc_ids + [doc_id])
-            break
-    else:
-        acc.append((word, [doc_id]))
-    return acc
-
-
-reduced_tuple = reduce(merge_lists_tuple, mapped, [])
-print(reduced_tuple)
-
+    while powNumber < input1:
+        powNumber = math.pow(i, 2)
+        if powNumber < input1:
+            print(str(i) + ' to the power of 2 is ' + str(powNumber))
+        i = i + 1
 # %% [md]
-# # Exercise 4 - Euler Tour
+# 1.3.27
+# %%
+
+inl = int(input())
+
+for i in range(0, inl):
+    string = ''
+    for j in range(0, inl):
+        if i % 2 != 0:
+            string += ' *'
+        else:
+            string += '* '
+
+    print(string)
+# %% [md]
+# 1.4 Creative 2 - Longest Plateau
+# %%
+import numpy as numpy
+
+arr = [1, 2, 2, 2, 3, 3, 3, 3, 3, 6, 2, 1, 1]
+
+
+def longest_plateau(arr):
+    max_length = 0  # Length of the longest plateau found so far
+    max_start = -1  # Starting index of the longest plateau found so far
+    current_length = 1  # Length of the current plateau
+    current_start = 0  # Starting index of the current plateau
+
+    for i in range(1, len(arr)):
+        if (
+            arr[i] == arr[i - 1]
+        ):  # Check if the current element is equal to the previous one
+            current_length += 1
+        else:
+            if (
+                i > 1 and arr[i] < arr[i - 2]
+            ):  # Check if the current element is smaller than the one before it
+                if current_length > max_length:
+                    max_length = current_length
+                    max_start = current_start
+            current_length = 1
+            current_start = i
+
+    # Check one more time after the loop in case the longest plateau ends at the end of the array
+    if current_length > max_length:
+        max_length = current_length
+        max_start = current_start
+
+        return max_length, arr[max_start : max_start + max_length]
+
+
+print(longest_plateau(arr))
+# %% [md]
+# 1.4 Creative 10 - Find Duplicates
+# %%
+list = [1, 2, 3, 4, 5, 5, 6, 7]
+
+
+def find_duplicate(list):
+    for idx, i in enumerate(list):
+        for jdx, j in enumerate(list):
+            if j == i and idx != jdx:
+                return 'Duplicate found!'
+                break
+    return 'No duplicates!'
+
+
+print(find_duplicate(list))
+# %% [md]
+# 2.3 - Recursion
+# %%
+
+
+def ex233(n):
+    if n <= 0:
+        return
+    print(n)
+    ex233(n - 2)
+    ex233(n - 3)
+    print(n)
+
+
+ex233(6)
+# %% [md]
+# 2.3 Creative 3 - Permutations
+# %%
+def perm(s):
+    if len(s) == 0:
+        return ['']
+
+    strings = []
+    for i in range(len(s)):
+        # Compute a list of permutations of s with s[i] removed.
+        subStrings = perm(s[:i] + s[i + 1 :])
+
+        # Prepend s[i] to each string in that list.
+        for subString in subStrings:
+            strings += [s[i] + subString]
+
+    return strings
+
+
+print(perm(['a', 'b', 'c']))
+# %% [md]
+# # NumPy package
+# Exercises about numpy
 # %%
 import numpy as np
 
-init_matrix = np.loadtxt('./Data/eulerGraphs1.txt')
-graph = np.unique(init_matrix, axis=0).tolist()
+matrix = np.loadtxt('numpyMatrix.txt', usecols=range(4))
+A = matrix[:, :-1]
+b = matrix[:, -1]
 
-vertices = list(set(reduce(lambda x, y: x + y, graph)))
+# Solve the linear equation Ax = b
+x = np.linalg.solve(A, b)
 
-
-# For every vertice in vertices check map all occurences in all lists in graph
-# If it is contained do 1 else 0.
-# then reduce it to get the total count pr vertices
-degrees = list(
-    map(
-        lambda v: reduce(
-            lambda x, y: x + y, map(lambda e: 1 if v in e else 0, graph)
-        ),
-        vertices,
-    )
-)
-
-# Count the number of vertices with even and odd degrees
-even = reduce(
-    lambda acc, degree: acc + 1 if degree % 2 == 0 else acc, degrees, 0
-)
-odd = reduce(
-    lambda acc, degree: acc + 1 if degree % 2 != 0 else acc, degrees, 0
-)
-
-print(even)
-print(odd)
+print('Solution x:')
+print(x)
 # %% [md]
-# # Exercise 5 - Common Friends
+# # SciPy Package
+# Exercises about SciPy
 # %%
 
-from functools import reduce
-
-
-def split(line):
-    friend = line.split(':')
-    friends = list(map(int, friend[1].split(',')))
-    return (int(friend[0]), friends)
-
-
-lines = list(map(split, open('./Data/friends2.txt').readlines()))
-mapped = []
-for i in lines:
-    mapped.extend(list(map(lambda y: (sorted([i[0], y]), i[1]), i[1])))
-
-
-def merge_lists_tuple(acc, pair):
-    friend_pair, friends = pair
-    for i, (existing_pair, existing_friends) in enumerate(acc):
-        if friend_pair == existing_pair:
-            acc[i] = (
-                friend_pair,
-                list(filter(lambda x: x in existing_friends, friends)),
-            )
-            break
-    else:
-        acc.append((friend_pair, friends))
-    return acc
-
-
-reduced = reduce(merge_lists_tuple, mapped, [])
-print(reduced)
-
-# %% [md]
-# # Exercise 6 - Triangle Counting
-# %%
-
-# Just a stupid non reduce/map version
+import scipy as sp
 import numpy as np
-import numba
-from functools import reduce
+import matplotlib.pyplot as plt
+from scipy.optimize import root_scalar
 
-filename = './Data/roadnet.txt'
+array = np.loadtxt('scipymatrix.txt')
+x = np.array(array[:, 0])
+y = np.array(array[:, -1])
+print(x)
+print(y)
 
-neighbors = {}
+coefficients = np.polyfit(x, y, 3)
+poly = np.poly1d(coefficients)
 
-# Read the file and populate the neighbors dictionary
-with open(filename, 'r') as file:
-    for line in file:
-        edge = line.strip().split()
-        node1, node2 = int(edge[0]), int(edge[1])
-
-        # Add nodes to the neighbors dictionary
-        if node1 not in neighbors:
-            neighbors[node1] = set()
-        if node2 not in neighbors:
-            neighbors[node2] = set()
-
-        # Add edges to the neighbors dictionary
-        neighbors[node1].add(node2)
-        neighbors[node2].add(node1)
-print(len(neighbors))
-# Function to count triangles for a given node
-def count_triangles_for_node(node, neighbors):
-    triangle_count = 0
-    node_neighbors = neighbors[node]
-
-    for neighbor1 in node_neighbors:
-        for neighbor2 in node_neighbors:
-            if neighbor1 < neighbor2 and neighbor2 in neighbors[neighbor1]:
-                triangle_count += 1
-
-    return triangle_count
+print(coefficients)
+print(poly)
 
 
-# Iterate through nodes and count triangles
-total_triangles = 0
-for node in neighbors:
-    total_triangles += count_triangles_for_node(node, neighbors)
+def polynomial_function(x):
+    return poly(x)
 
-# Divide by 3 because each triangle is counted 3 times
-total_triangles //= 3
 
-print('Number of triangles in the graph:', total_triangles)
+roots = []
+x_intervals = zip(x[:-1], x[1:])
+for interval in x_intervals:
+    a, b = interval
+    fa = polynomial_function(a)
+    fb = polynomial_function(b)
 
+    if fa * fb < 0:  # Check if f(a) and f(b) have different signs
+        root = root_scalar(polynomial_function, bracket=[a, b])
+        if root.converged and root.root.imag == 0:
+            roots.append(root.root.real)
+
+
+x_range = np.linspace(min(x), max(x), 100)
+y_range = poly(x_range)
+
+plt.plot(x_range, y_range, label='Fitted Polynomial')
+plt.scatter(roots, [0] * len(roots), color='red', marker='o', label='Roots')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.legend()
+plt.title('Fitted Polynomial and Its Roots')
+plt.grid(True)
+plt.show()
+
+# Print the roots
+print('Real roots of the polynomial:', roots)
 # %% [md]
-# # Exercise 7 - NetworkX
-# This is legit just a faster way to fix to do it with dedicated functions for graph theory
+# # Numba Package
+# Exercises about Numba
+# %%
+from numba import njit
+import numpy as np
+import math
+
+
+def sum(n):
+    sum = 0
+    for i in range(1, n + 1):
+        sum += 1 / np.power(i, 2)
+
+
+n = 10000
+# %timeit -r 1 -n 100 sum(n)
+
+
+@njit
+def ssum(n):
+    sum = 0
+    for i in range(1, n + 1):
+        sum += 1 / np.power(i, 2)
+
+
+n = 10000
+# %timeit -r 1 -n 2000 ssum(n)
+# %% [md]
+# # Pandas Package
+# Exercies about Pandas
+# [Scraping](https://towardsdatascience.com/scraping-tabular-data-with-pandas-python-10cf2a133cbf)
+# %%
+import pandas as pd
+
+pd.DataFrame({'Yes': [50, 21], 'No': [131, 2]})
+
+url = 'https://en.wikipedia.org/wiki/The_World%27s_Billionaires'
+
+df_list = pd.read_html(url)
+print(df_list[2])
