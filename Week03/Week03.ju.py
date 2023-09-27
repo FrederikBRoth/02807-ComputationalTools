@@ -251,7 +251,7 @@ from functools import reduce
 
 filename = './Data/roadnet.txt'
 
-neighbors = {}
+neighbors = dict()
 
 # Read the file and populate the neighbors dictionary
 with open(filename, 'r') as file:
@@ -283,14 +283,16 @@ def count_triangles_for_node(node, neighbors):
 
 
 # Iterate through nodes and count triangles
-total_triangles = 0
-for node in neighbors:
-    total_triangles += count_triangles_for_node(node, neighbors)
+def test():
+    total_triangles = 0
+    for node in neighbors:
+        total_triangles += count_triangles_for_node(node, neighbors)
 
-# Divide by 3 because each triangle is counted 3 times
-total_triangles //= 3
+    # Divide by 3 because each triangle is counted 3 times
+    return total_triangles / 3
 
-print('Number of triangles in the graph:', total_triangles)
+
+print('Number of triangles in the graph:', test())
 
 # %% [md]
 # # Exercise 7 - NetworkX
